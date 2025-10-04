@@ -11,6 +11,9 @@ import { ProjectsPage } from './pages/projects/ProjectsPage';
 import { ProjectDetailPage } from './pages/projects/ProjectDetailPage';
 import { TasksPage } from './pages/tasks/TasksPage';
 import { UsersPage } from './pages/users/UsersPage';
+import DocumentationPage from './pages/documentation/DocumentationPage';
+import EstimationsPage from './pages/estimations/EstimationsPage';
+import ReportsPage from './pages/reports/ReportsPage';
 
 // Import layout
 import { Layout } from './components/layout/Layout';
@@ -50,6 +53,9 @@ function App() {
                   <Route path="/projects/:id" element={<ProjectDetailPage />} />
                   <Route path="/tasks" element={<TasksPage />} />
                   <Route path="/users" element={<UsersPage />} />
+                  <Route path="/documentation" element={<DocumentationPage />} />
+                  <Route path="/estimations" element={<EstimationsPage />} />
+                  <Route path="/reports" element={<ReportsPage />} />
                 </Route>
               </Route>
               

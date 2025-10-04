@@ -5,6 +5,9 @@ import {
   FolderKanban, 
   CheckSquare, 
   Users, 
+  FileText,
+  Calculator,
+  BarChart3,
   LogOut 
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
@@ -30,6 +33,21 @@ const navigationItems = [
     name: 'Usuarios',
     href: '/users',
     icon: Users,
+  },
+  {
+    name: 'Documentación',
+    href: '/documentation',
+    icon: FileText,
+  },
+  {
+    name: 'Estimaciones',
+    href: '/estimations',
+    icon: Calculator,
+  },
+  {
+    name: 'Reportes',
+    href: '/reports',
+    icon: BarChart3,
   },
 ];
 

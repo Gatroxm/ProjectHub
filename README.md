@@ -2,24 +2,47 @@
 
 > **Plataforma SaaS Multi-Tenant para Casas de Desarrollo de Software**
 
-Una solución integral que centraliza proyectos, documentación, equipos y comunicación, diseñada para resolver los problemas de gestión del conocimiento, falta de transparencia con el cliente y control de tiempos.
+Una solución integral que centraliza proyectos, documentación, equipos y comunicación con funcionalidades avanzadas de **estimaciones con IA**, **gestión de documentación** y **reportes analíticos**, todo conectado a **MongoDB Atlas** para máxima escalabilidad.
 
 ---
 
 ## 📋 Tabla de Contenidos
 
 - [🎯 Resumen Ejecutivo](#-resumen-ejecutivo)
-- [💼 Modelo de Negocio](#-modelo-de-negocio)
+- [✨ Funcionalidades Principales](#-funcionalidades-principales)
 - [🏗️ Arquitectura Tecnológica](#️-arquitectura-tecnológica)
-- [👥 Roles y Permisos](#-roles-y-permisos)
-- [✅ Roadmap de Desarrollo](#-roadmap-de-desarrollo)
-- [🎯 Fases del Proyecto](#-fases-del-proyecto)
+- [� Instalación y Configuración](#-instalación-y-configuración)
+- [🔧 Variables de Entorno](#-variables-de-entorno)
+- [📊 Módulos de Negocio](#-módulos-de-negocio)
+- [🌐 Endpoints API](#-endpoints-api)
+- [💼 Modelo de Negocio](#-modelo-de-negocio)
+- [📈 Estado del Desarrollo](#-estado-del-desarrollo)
 
 ---
 
 ## 🎯 Resumen Ejecutivo
 
-**Project Hub** es una plataforma SaaS Multi-Tenant que centraliza todas las operaciones de casas de desarrollo de software, proporcionando transparencia total, gestión eficiente de equipos y planificación estratégica integrada.
+**Project Hub** es una plataforma SaaS Multi-Tenant que centraliza todas las operaciones de casas de desarrollo de software, proporcionando transparencia total, gestión eficiente de equipos y planificación estratégica integrada con tecnología de vanguardia.
+
+## ✨ Funcionalidades Principales
+
+### 🤖 **Motor de Estimaciones con IA**
+- **Algoritmos inteligentes** para cálculo automático de recursos
+- **Análisis de complejidad** por tecnología y tipo de proyecto
+- **Estimaciones precisas** de tiempo, costo y recursos humanos
+- **Factores de riesgo** y recomendaciones automatizadas
+
+### 📚 **Sistema de Documentación Avanzado**
+- **Gestión de versiones** automática de documentación
+- **Tipos de documentos** especializados (Requerimientos, API, Manuales)
+- **Búsqueda inteligente** por contenido y metadatos
+- **Flujo de aprobación** con estados y autores
+
+### 📊 **Reportes y Analytics**
+- **Dashboard ejecutivo** con métricas clave
+- **Análisis de rendimiento** de equipos y proyectos
+- **Reportes de costos** y variaciones presupuestarias
+- **Métricas de eficiencia** tecnológica
 
 ## 💼 Modelo de Negocio
 
@@ -31,29 +54,189 @@ Una solución integral que centraliza proyectos, documentación, equipos y comun
 | **🎯 Cliente Objetivo** | Casas de desarrollo y agencias digitales | Escalabilidad sin costo adicional por usuario |
 | **🚀 Propuesta Única** | Transparencia total + planificación integrada | **Motor de Estimaciones** para crecimiento planificado |
 
-### 💰 Ventajas Competitivas
-
-- ✅ **Usuarios ilimitados** por licencia empresarial
-- ✅ **Transparencia total** con el cliente final
-- ✅ **Gestión del conocimiento** centralizada
-- ✅ **Simulador de costos** para nuevas funcionalidades
-
 ---
 
 ## 🏗️ Arquitectura Tecnológica
 
-### 🛠️ Stack Tecnológico
+### �️ Stack Tecnológico Actualizado
 
 ```mermaid
 graph TB
-    A[React Frontend] --> B[GraphQL API]
+    A[React + TypeScript Frontend] --> B[REST + GraphQL API]
     B --> C[NestJS Backend]
-    C --> D[PostgreSQL Database]
-    C --> E[Redis Cache]
-    C --> F[Docker Containers]
+    C --> D[MongoDB Atlas]
+    C --> E[Mongoose ODM]
+    C --> F[JWT Authentication]
+    G[Swagger Documentation] --> C
+    H[Docker Deployment] --> C
 ```
 
 | 🔧 **Componente** | 💻 **Tecnología** | 📋 **Función** |
+|---|---|---|
+| **Frontend** | React 18 + TypeScript + Vite | SPA moderna con tipado fuerte |
+| **Backend** | NestJS + TypeScript | API robusta con arquitectura modular |
+| **Base de Datos** | MongoDB Atlas | Base de datos NoSQL en la nube |
+| **ODM** | Mongoose | Modelado de datos y validaciones |
+| **Autenticación** | JWT + Passport | Seguridad y control de acceso |
+| **Documentación** | Swagger/OpenAPI | API documentation automática |
+| **Deployment** | Docker + Cloud | Contenedores para escalabilidad |
+
+## 🚀 Instalación y Configuración
+
+### 📋 Prerrequisitos
+
+- Node.js 18+ 
+- NPM o Yarn
+- MongoDB Atlas account (o MongoDB local)
+- Git
+
+### ⚡ Instalación Rápida
+
+```bash
+# Clonar repositorio
+git clone https://github.com/Gatroxm/ProjectHub.git
+cd ProjectHub
+
+# Instalar dependencias del backend
+cd backend
+npm install
+
+# Configurar variables de entorno
+cp .env.example .env
+# Editar .env con tus credenciales
+
+# Compilar y ejecutar
+npm run build
+npm start
+```
+
+### 🔧 Variables de Entorno
+
+Crear archivo `.env` en `/backend` con:
+
+```bash
+# Environment Configuration
+NODE_ENV=development
+PORT=3000
+
+# MongoDB Configuration
+# Para producción/Atlas: mongodb+srv://usuario:password@cluster.mongodb.net/basededatos
+# Para desarrollo local: mongodb://localhost:27017/projecthub_dev
+MONGODB_URI=mongodb://localhost:27017/projecthub_dev
+
+# JWT Configuration
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_EXPIRES_IN=7d
+
+# API Configuration
+API_PREFIX=api/v1
+SWAGGER_PATH=docs
+```
+
+## 📊 Módulos de Negocio
+
+### 📚 **Módulo de Documentación**
+- **Endpoint**: `/api/v1/documentation`
+- **Funciones**: CRUD completo, versionado, búsqueda, aprobación
+- **Tipos**: Requerimientos, Especificaciones Técnicas, Documentación API
+- **Estados**: Borrador, En Revisión, Aprobado, Publicado
+
+### 🤖 **Módulo de Estimaciones IA**
+- **Endpoint**: `/api/v1/estimations`  
+- **Algoritmo**: Motor inteligente con 12+ factores de análisis
+- **Salidas**: Horas, desarrolladores, semanas, costos, riesgos
+- **Tecnologías**: React, Angular, Vue, Node.js, Python, Java, .NET
+- **Tipos**: Web App, Mobile, API, E-commerce, CRM, ERP
+
+### 📈 **Módulo de Reportes**
+- **Endpoint**: `/api/v1/reports`
+- **Dashboards**: Ejecutivo, rendimiento de equipos, análisis de costos
+- **Métricas**: Productividad, eficiencia tecnológica, timelines
+- **Exportes**: PDF, Excel, JSON
+
+## 🌐 Endpoints API
+
+### 🔐 **Autenticación**
+```bash
+POST /api/v1/auth/register    # Registro
+POST /api/v1/auth/login       # Login  
+GET  /api/v1/auth/profile     # Perfil
+POST /api/v1/auth/refresh     # Refresh token
+```
+
+### 📊 **Proyectos & Tareas**
+```bash
+GET  /api/v1/projects         # Listar proyectos
+POST /api/v1/projects         # Crear proyecto
+GET  /api/v1/tasks            # Listar tareas
+POST /api/v1/tasks            # Crear tarea
+```
+
+### � **Documentación**
+```bash
+POST /api/v1/documentation               # Crear documento
+GET  /api/v1/documentation/project/:id   # Docs por proyecto  
+GET  /api/v1/documentation/search        # Búsqueda
+PATCH /api/v1/documentation/:id/publish  # Publicar
+```
+
+### 🤖 **Estimaciones**
+```bash
+POST /api/v1/estimations      # Crear estimación
+GET  /api/v1/estimations      # Listar estimaciones
+GET  /api/v1/estimations/stats # Estadísticas
+```
+
+### 📈 **Reportes**
+```bash
+GET /api/v1/reports/dashboard           # Dashboard ejecutivo
+GET /api/v1/reports/team-performance    # Rendimiento equipos
+GET /api/v1/reports/project-costs      # Análisis costos
+```
+
+## 💼 Modelo de Negocio
+
+### 🎯 Propuesta de Valor
+
+| 💡 **Aspecto** | 📝 **Definición** | ⭐ **Valor Diferencial** |
+|---|---|---|
+| **🔄 Modelo de Venta** | B2B por suscripción recurrente | **Licencia por Empresa** con usuarios ilimitados |
+| **🎯 Cliente Objetivo** | Casas de desarrollo y agencias digitales | Escalabilidad sin costo adicional por usuario |
+| **🚀 Propuesta Única** | IA + Transparencia + Gestión integral | **Motor de Estimaciones IA** para crecimiento planificado |
+
+### 💰 Ventajas Competitivas
+
+- ✅ **IA para Estimaciones** - Algoritmos propios de cálculo de recursos
+- ✅ **Usuarios ilimitados** por licencia empresarial  
+- ✅ **Transparencia total** con el cliente final
+- ✅ **Gestión del conocimiento** centralizada
+- ✅ **MongoDB Atlas** - Escalabilidad cloud nativa
+- ✅ **Arquitectura moderna** - NestJS + React + TypeScript
+
+## 📈 Estado del Desarrollo
+
+### ✅ **Completado (100%)**
+- [x] Arquitectura base NestJS + React
+- [x] Autenticación JWT completa  
+- [x] Migración a MongoDB Atlas
+- [x] Módulo de Documentación completo
+- [x] Motor de Estimaciones IA funcional
+- [x] Sistema de Reportes avanzado
+- [x] API REST con Swagger
+- [x] Protección de credenciales
+- [x] Frontend React con todas las páginas
+
+### 🔄 **En Progreso**
+- [ ] Testing unitario y e2e
+- [ ] Optimizaciones de rendimiento
+- [ ] Deployment automatizado
+
+### � **Próximos Pasos**
+1. **Testing Completo** - Unit tests y E2E
+2. **CI/CD Pipeline** - GitHub Actions
+3. **Monitoring** - Logs y métricas
+4. **Seguridad Avanzada** - Rate limiting, validaciones
+5. **Funcionalidades Premium** - Integrations, AI avanzado
 |---|---|---|
 | **🎨 Frontend** | **React + TypeScript** | Interfaz de usuario moderna y reactiva |
 | **🔗 API** | **GraphQL + Apollo** | Comunicación eficiente cliente-servidor |
