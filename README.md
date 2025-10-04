@@ -153,6 +153,155 @@ gantt
 
 ---
 
+## 🚀 Instalación y Configuración
+
+### **📋 Prerrequisitos**
+
+Antes de comenzar, asegúrate de tener instalado:
+
+- **Node.js 18+** - [Descargar aquí](https://nodejs.org/)
+- **npm** o **yarn** - Viene con Node.js
+- **Git** - [Descargar aquí](https://git-scm.com/)
+- **PostgreSQL 14+** *(Opcional - se usa mock data por defecto)*
+
+### **⚡ Instalación Rápida**
+
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/Gatroxm/ProjectHub.git
+   cd ProjectHub
+   ```
+
+2. **Instalar dependencias del Backend:**
+   ```bash
+   cd backend
+   npm install
+   cd ..
+   ```
+
+3. **Instalar dependencias del Frontend:**
+   ```bash
+   cd frontend
+   npm install
+   cd ..
+   ```
+
+4. **Ejecutar ambos servidores:**
+   ```bash
+   # En Windows (PowerShell)
+   .\iniciar_servidores.ps1
+   
+   # En Linux/Mac
+   chmod +x iniciar_servidores.sh && ./iniciar_servidores.sh
+   ```
+
+### **🖥️ URLs de Acceso**
+
+Una vez ejecutado el script, tendrás acceso a:
+
+- **🎨 Frontend (Aplicación):** http://localhost:5173
+- **🔧 Backend API:** http://localhost:3000/api/v1
+- **📚 Documentación Swagger:** http://localhost:3000/docs
+- **🔍 GraphQL Playground:** http://localhost:3000/graphql
+
+### **👤 Usuarios de Prueba**
+
+El sistema incluye usuarios de prueba listos para usar:
+
+```
+🔐 Administrador:
+   Email: admin@example.com
+   Contraseña: password
+
+👨‍💻 Desarrollador:
+   Email: developer@company.com
+   Contraseña: dev123
+
+👤 Usuario básico:
+   Email: test@proyectohub.com
+   Contraseña: 123456
+
+🤝 Cliente:
+   Email: client@proyecto.com
+   Contraseña: client2024
+```
+
+### **🛠️ Ejecución Manual (Alternativa)**
+
+Si prefieres ejecutar cada servidor por separado:
+
+**Backend:**
+```bash
+cd backend
+npm run start:dev
+# Se ejecuta en http://localhost:3000
+```
+
+**Frontend:**
+```bash
+cd frontend
+npm run dev
+# Se ejecuta en http://localhost:5173
+```
+
+### **⚙️ Configuración de Base de Datos (Opcional)**
+
+Por defecto, el sistema usa datos mock. Para conectar PostgreSQL:
+
+1. **Crear base de datos:**
+   ```sql
+   CREATE DATABASE project_hub_dev;
+   ```
+
+2. **Configurar variables de entorno:**
+   ```bash
+   # backend/.env
+   DATABASE_HOST=localhost
+   DATABASE_PORT=5432
+   DATABASE_USERNAME=postgres
+   DATABASE_PASSWORD=tu_password
+   DATABASE_NAME=project_hub_dev
+   ```
+
+### **🔧 Scripts Disponibles**
+
+```bash
+# Backend
+npm run start:dev      # Modo desarrollo con hot reload
+npm run build          # Compilar para producción
+npm run test           # Ejecutar pruebas
+
+# Frontend
+npm run dev            # Servidor de desarrollo
+npm run build          # Compilar para producción
+npm run preview        # Vista previa de build
+```
+
+### **🐛 Solución de Problemas**
+
+**¿Los servidores no inician?**
+```bash
+# Verificar puertos ocupados
+netstat -ano | findstr :3000
+netstat -ano | findstr :5173
+
+# Limpiar caché de npm
+npm cache clean --force
+```
+
+**¿Problemas de CORS?**
+- Verifica que el frontend esté en puerto 5173
+- El backend está configurado para permitir localhost:5173
+
+**¿Error de módulos no encontrados?**
+```bash
+# Reinstalar dependencias
+rm -rf node_modules package-lock.json
+npm install
+```
+
+---
+
 ## 🤝 Contribución
 
 Este proyecto está en desarrollo activo. Para contribuir o reportar issues, por favor contacta al equipo de desarrollo.
