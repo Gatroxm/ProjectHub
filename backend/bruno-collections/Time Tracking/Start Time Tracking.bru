@@ -1,0 +1,27 @@
+meta {
+  name: Start Time Tracking
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/time-tracking/start/{{taskId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "description": "Iniciando trabajo en desarrollo de API"
+  }
+}
+
+tests {
+  test("should return 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

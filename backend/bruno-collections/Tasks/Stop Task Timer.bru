@@ -1,0 +1,27 @@
+meta {
+  name: Stop Task Timer
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/tasks/{{taskId}}/stop-timer
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "description": "Terminando sesión de trabajo"
+  }
+}
+
+tests {
+  test("should return 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

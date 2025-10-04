@@ -1,0 +1,30 @@
+meta {
+  name: Update Project
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/projects/{{projectId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "Proyecto Actualizado",
+    "description": "Descripción actualizada del proyecto",
+    "status": "in_progress",
+    "priority": "medium"
+  }
+}
+
+tests {
+  test("should return 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

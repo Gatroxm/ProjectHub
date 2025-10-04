@@ -1,0 +1,42 @@
+meta {
+  name: Create User
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/users
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "email": "nuevo.usuario@empresa.com",
+    "firstName": "Carlos",
+    "lastName": "García",
+    "password": "Password123!",
+    "role": "developer",
+    "companyId": "1"
+  }
+}
+
+tests {
+  test("should return 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+  
+  test("should return created user", function() {
+    expect(res.getBody().user.email).to.equal("nuevo.usuario@empresa.com");
+  });
+}
+
+script:post-response {
+  if (res.body && res.body.user && res.body.user.id) {
+    bru.setEnvVar("userId", res.body.user.id);
+  }
+}

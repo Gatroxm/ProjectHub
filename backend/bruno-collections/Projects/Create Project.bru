@@ -1,0 +1,44 @@
+meta {
+  name: Create Project
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/projects
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "Mi Proyecto de Desarrollo",
+    "description": "Sistema web completo con React y NestJS",
+    "status": "active",
+    "priority": "high",
+    "startDate": "2025-01-01",
+    "endDate": "2025-06-30",
+    "budget": 50000,
+    "clientId": "1"
+  }
+}
+
+tests {
+  test("should return 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+  
+  test("should return created project", function() {
+    expect(res.getBody().project.name).to.equal("Mi Proyecto de Desarrollo");
+  });
+}
+
+script:post-response {
+  if (res.body && res.body.project && res.body.project.id) {
+    bru.setEnvVar("projectId", res.body.project.id);
+  }
+}

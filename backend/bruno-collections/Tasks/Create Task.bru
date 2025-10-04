@@ -1,0 +1,40 @@
+meta {
+  name: Create Task
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/tasks
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "title": "Implementar autenticación JWT",
+    "description": "Crear sistema completo de autenticación con JWT y refresh tokens",
+    "status": "pending",
+    "priority": "high",
+    "projectId": "{{projectId}}",
+    "assignedToId": "{{userId}}",
+    "estimatedHours": 16,
+    "dueDate": "2025-01-15"
+  }
+}
+
+tests {
+  test("should return 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+}
+
+script:post-response {
+  if (res.body && res.body.task && res.body.task.id) {
+    bru.setEnvVar("taskId", res.body.task.id);
+  }
+}

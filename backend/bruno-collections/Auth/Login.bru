@@ -1,0 +1,37 @@
+meta {
+  name: Login
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/auth/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "admin@example.com",
+    "password": "password"
+  }
+}
+
+tests {
+  test("should return 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  
+  test("should return access token", function() {
+    expect(res.getBody().access_token).to.be.a('string');
+  });
+}
+
+script:post-response {
+  if (res.body && res.body.access_token) {
+    bru.setEnvVar("token", res.body.access_token);
+  }
+  if (res.body && res.body.user && res.body.user.id) {
+    bru.setEnvVar("userId", res.body.user.id);
+  }
+}

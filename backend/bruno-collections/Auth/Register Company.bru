@@ -1,0 +1,41 @@
+meta {
+  name: Register Company
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/auth/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "companyName": "Mi Empresa de Desarrollo",
+    "website": "https://miempresa.com",
+    "firstName": "Juan",
+    "lastName": "Pérez",
+    "email": "juan.perez@miempresa.com",
+    "password": "MiPassword123!"
+  }
+}
+
+tests {
+  test("should return 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+  
+  test("should return access token", function() {
+    expect(res.getBody().access_token).to.be.a('string');
+  });
+}
+
+script:post-response {
+  if (res.body && res.body.access_token) {
+    bru.setEnvVar("token", res.body.access_token);
+  }
+  if (res.body && res.body.user && res.body.user.id) {
+    bru.setEnvVar("userId", res.body.user.id);
+  }
+}

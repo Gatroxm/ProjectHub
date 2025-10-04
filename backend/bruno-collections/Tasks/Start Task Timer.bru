@@ -1,0 +1,27 @@
+meta {
+  name: Start Task Timer
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/tasks/{{taskId}}/start-timer
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "description": "Comenzando trabajo en autenticación JWT"
+  }
+}
+
+tests {
+  test("should return 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}
